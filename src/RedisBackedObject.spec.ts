@@ -34,7 +34,7 @@ describe('RedisBackedObject', () => {
         a: 1
       }
     )
-    const proxy = state.getProxy()
+    const proxy = state.proxy
     proxy.a = 2
 
     await sleep(2)
@@ -97,10 +97,34 @@ describe('RedisBackedObject', () => {
       }
     )
 
-    const proxy = state.getProxy()
+    const proxy = state.proxy
     expect(proxy.a).toBe(1) // before init runs we have the default
 
     await sleep(65)
     expect(proxy.a).toBe(4)
+  })
+
+  it('should reset to initial state', async () => {
+    const state = new RedisBackedObject(
+      {
+        redis: redisClient,
+        key: 'rbo:test3',
+        saveInterval: 2
+      },
+      {
+        a: 15
+      }
+    )
+    const proxy = state.proxy
+    proxy.a = 2
+    await sleep(2)
+    const data = await redisClient.get('rbo:test3')
+    expect(data).toBe('{"a":2}')
+
+    state.reset()
+    expect(proxy.a).toBe(15)
+    await sleep(2)
+    const data2 = await redisClient.get('rbo:test3')
+    expect(data2).toBe('{"a":15}')
   })
 })

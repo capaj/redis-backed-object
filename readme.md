@@ -28,4 +28,12 @@ proxy.a = 2
 await sleep(2)
 const data = await redisClient.get('rbo:test')
 expect(data).toBe('{"a":2}')
+
+state.reset()
+expect(proxy.a).toBe(1)
+await sleep(2)
+const dataAfterReset = await redisClient.get('rbo:test')
+expect(dataAfterReset).toBe('{"a":1}')
 ```
+
+check out all the features in [RedisBackedObject.spec.ts](src/RedisBackedObject.spec.ts)

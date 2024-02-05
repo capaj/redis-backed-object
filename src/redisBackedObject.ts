@@ -1,5 +1,5 @@
 import Redis from 'ioredis'
-import { debounce } from 'lodash-es'
+import { cloneDeep, debounce } from 'lodash-es'
 
 /**
  * RedisBackedObject is a class that allows you to create an object that is backed by Redis. This can be useful for caching state in long running processes.
@@ -9,7 +9,7 @@ export class RedisBackedObject<T extends object> {
   private redis: Redis
   private key: string
   private initialData: T
-  private proxy: T
+  proxy: T
   saveInterval: number
   initPromise: Promise<void>
 
@@ -28,8 +28,8 @@ export class RedisBackedObject<T extends object> {
     this.redis = redis
     this.saveInterval = saveInterval
     this.key = key
-    this.initialData = initialData
-    this.proxy = this.deepProxy(this.initialData)
+    this.initialData = cloneDeep(initialData)
+    this.proxy = this.deepProxy(initialData)
 
     this.initPromise = this.init()
   }
@@ -78,7 +78,11 @@ export class RedisBackedObject<T extends object> {
     trailing: true // Save after the last change in the interval, other way around we would not save the last change into redis in case many changes happen in the interval
   })
 
-  public getProxy() {
-    return this.proxy
+  public delete() {
+    return this.redis.del(this.key)
+  }
+
+  public reset() {
+    Object.assign(this.proxy, this.initialData)
   }
 }
