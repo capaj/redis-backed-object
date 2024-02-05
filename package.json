@@ -1,0 +1,40 @@
+{
+  "name": "redis-backed-object",
+  "version": "0.1.0",
+  "description": "",
+  "main": "./dist/redisBackedObject.js",
+  "scripts": {
+    "test": "vitest",
+    "ts": "tsc --noEmit",
+    "build": "tsup src/redisBackedObject.ts --format cjs,esm --dts --sourcemap",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/lodash-es": "^4.17.12",
+    "ioredis": "^5.3.2",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.2"
+  },
+  "module": "./dist/redisBackedObject.mjs",
+  "types": "./dist/redisBackedObject.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/redisBackedObject.js",
+      "import": "./dist/redisBackedObject.mjs",
+      "types": "./dist/redisBackedObject.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "ioredis": "^5.3.2"
+  },
+  "dependencies": {
+    "lodash-es": "^4.17.21"
+  }
+}
