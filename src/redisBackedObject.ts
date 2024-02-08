@@ -16,7 +16,7 @@ export class RedisBackedObject<T extends object> {
     Record<
       string,
       {
-        path: string | null
+        path: string[]
         value: T
       }
     >
@@ -75,12 +75,12 @@ export class RedisBackedObject<T extends object> {
             ? this.deepProxy(
                 value,
                 Array.isArray(parentPath)
-                  ? [parentPath, propertyPath]
+                  ? [...parentPath, propertyPath]
                   : [propertyPath]
               )
             : value
         this.emitter.emit('set', {
-          path: parentPath ? [...parentPath, propertyPath] : propertyPath,
+          path: parentPath ? [...parentPath, propertyPath] : [propertyPath],
           value: this.proxy
         })
         this.debouncedSave()
@@ -100,7 +100,7 @@ export class RedisBackedObject<T extends object> {
   saveToRedis = async () => {
     await this.redis.set(this.key, JSON.stringify(this.proxy))
     this.emitter.emit('save', {
-      path: null,
+      path: [],
       value: this.proxy
     })
   }
@@ -114,7 +114,7 @@ export class RedisBackedObject<T extends object> {
   public reset() {
     Object.assign(this.proxy, this.initialData)
     this.emitter.emit('reset', {
-      path: null,
+      path: [],
       value: this.initialData
     })
   }
