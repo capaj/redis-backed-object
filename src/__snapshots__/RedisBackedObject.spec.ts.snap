@@ -62,7 +62,7 @@ exports[`RedisBackedObject > should save to Redis 2`] = `
   [
     "delete",
     {
-      "path": null,
+      "path": [],
       "value": {},
     },
   ],
@@ -141,7 +141,7 @@ exports[`RedisBackedObject > should save to Redis 3`] = `
   [
     "delete",
     {
-      "path": null,
+      "path": [],
       "value": {
         "array": [
           1,
@@ -332,7 +332,7 @@ exports[`RedisBackedObject > should save to Redis 4`] = `
   [
     "delete",
     {
-      "path": null,
+      "path": [],
       "value": {
         "array": [
           1,

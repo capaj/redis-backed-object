@@ -39,7 +39,7 @@ export class RedisBackedObject<T extends object> {
     this.saveInterval = saveInterval
     this.key = key
     this.initialData = cloneDeep(initialData)
-    this.proxy = this.deepProxy(initialData, null)
+    this.proxy = this.deepProxy(initialData, [])
 
     this.initPromise = this.init()
   }
@@ -61,10 +61,7 @@ export class RedisBackedObject<T extends object> {
     }
 
     for (const key in data) {
-      data[key] = this.deepProxy(
-        data[key],
-        Array.isArray(parentPath) ? [...parentPath, key] : [key]
-      )
+      data[key] = this.deepProxy(data[key], [...parentPath, key])
     }
 
     return new Proxy(data, {
@@ -72,15 +69,10 @@ export class RedisBackedObject<T extends object> {
         const propertyPath = isSymbol(property) ? property.toString() : property
         target[property] =
           typeof value === 'object'
-            ? this.deepProxy(
-                value,
-                Array.isArray(parentPath)
-                  ? [...parentPath, propertyPath]
-                  : [propertyPath]
-              )
+            ? this.deepProxy(value, [...parentPath, propertyPath])
             : value
         this.emitter.emit('set', {
-          path: parentPath ? [...parentPath, propertyPath] : [propertyPath],
+          path: [...parentPath, propertyPath],
           value: this.proxy
         })
         this.debouncedSave()
