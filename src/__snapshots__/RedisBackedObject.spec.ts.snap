@@ -1,0 +1,621 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RedisBackedObject > should save to Redis 1`] = `
+[
+  [
+    "set",
+    {
+      "path": "a",
+      "value": {
+        "a": 2,
+      },
+    },
+  ],
+  [
+    "save",
+    {
+      "path": null,
+      "value": {
+        "a": 2,
+      },
+    },
+  ],
+]
+`;
+
+exports[`RedisBackedObject > should save to Redis 2`] = `
+[
+  [
+    "set",
+    {
+      "path": "a",
+      "value": {},
+    },
+  ],
+  [
+    "save",
+    {
+      "path": null,
+      "value": {},
+    },
+  ],
+  [
+    "set",
+    {
+      "path": "a",
+      "value": {},
+    },
+  ],
+  [
+    "save",
+    {
+      "path": null,
+      "value": {},
+    },
+  ],
+  [
+    "delete",
+    {
+      "path": null,
+      "value": {},
+    },
+  ],
+  [
+    "save",
+    {
+      "path": null,
+      "value": {},
+    },
+  ],
+]
+`;
+
+exports[`RedisBackedObject > should save to Redis 3`] = `
+[
+  [
+    "set",
+    {
+      "path": "a",
+      "value": {
+        "array": [
+          1,
+          2,
+          3,
+          4,
+        ],
+      },
+    },
+  ],
+  [
+    "save",
+    {
+      "path": null,
+      "value": {
+        "array": [
+          1,
+          2,
+          3,
+          4,
+        ],
+      },
+    },
+  ],
+  [
+    "set",
+    {
+      "path": "a",
+      "value": {
+        "array": [
+          1,
+          2,
+          3,
+          4,
+        ],
+      },
+    },
+  ],
+  [
+    "save",
+    {
+      "path": null,
+      "value": {
+        "array": [
+          1,
+          2,
+          3,
+          4,
+        ],
+      },
+    },
+  ],
+  [
+    "delete",
+    {
+      "path": null,
+      "value": {
+        "array": [
+          1,
+          2,
+          3,
+          4,
+        ],
+      },
+    },
+  ],
+  [
+    "save",
+    {
+      "path": null,
+      "value": {
+        "array": [
+          1,
+          2,
+          3,
+          4,
+        ],
+      },
+    },
+  ],
+  [
+    "set",
+    {
+      "path": "array",
+      "value": {
+        "array": [
+          1,
+          2,
+          3,
+          4,
+        ],
+      },
+    },
+  ],
+  [
+    "save",
+    {
+      "path": null,
+      "value": {
+        "array": [
+          1,
+          2,
+          3,
+          4,
+        ],
+      },
+    },
+  ],
+  [
+    "set",
+    {
+      "path": [
+        "array",
+        "3",
+      ],
+      "value": {
+        "array": [
+          1,
+          2,
+          3,
+          4,
+        ],
+      },
+    },
+  ],
+  [
+    "set",
+    {
+      "path": [
+        "array",
+        "length",
+      ],
+      "value": {
+        "array": [
+          1,
+          2,
+          3,
+          4,
+        ],
+      },
+    },
+  ],
+  [
+    "save",
+    {
+      "path": null,
+      "value": {
+        "array": [
+          1,
+          2,
+          3,
+          4,
+        ],
+      },
+    },
+  ],
+]
+`;
+
+exports[`RedisBackedObject > should save to Redis 4`] = `
+[
+  [
+    "set",
+    {
+      "path": "a",
+      "value": {
+        "array": [
+          1,
+          2,
+          3,
+        ],
+        "nested": {
+          "a": [
+            1,
+            2,
+          ],
+        },
+      },
+    },
+  ],
+  [
+    "save",
+    {
+      "path": null,
+      "value": {
+        "array": [
+          1,
+          2,
+          3,
+        ],
+        "nested": {
+          "a": [
+            1,
+            2,
+          ],
+        },
+      },
+    },
+  ],
+  [
+    "set",
+    {
+      "path": "a",
+      "value": {
+        "array": [
+          1,
+          2,
+          3,
+        ],
+        "nested": {
+          "a": [
+            1,
+            2,
+          ],
+        },
+      },
+    },
+  ],
+  [
+    "save",
+    {
+      "path": null,
+      "value": {
+        "array": [
+          1,
+          2,
+          3,
+        ],
+        "nested": {
+          "a": [
+            1,
+            2,
+          ],
+        },
+      },
+    },
+  ],
+  [
+    "delete",
+    {
+      "path": null,
+      "value": {
+        "array": [
+          1,
+          2,
+          3,
+        ],
+        "nested": {
+          "a": [
+            1,
+            2,
+          ],
+        },
+      },
+    },
+  ],
+  [
+    "save",
+    {
+      "path": null,
+      "value": {
+        "array": [
+          1,
+          2,
+          3,
+        ],
+        "nested": {
+          "a": [
+            1,
+            2,
+          ],
+        },
+      },
+    },
+  ],
+  [
+    "set",
+    {
+      "path": "array",
+      "value": {
+        "array": [
+          1,
+          2,
+          3,
+        ],
+        "nested": {
+          "a": [
+            1,
+            2,
+          ],
+        },
+      },
+    },
+  ],
+  [
+    "save",
+    {
+      "path": null,
+      "value": {
+        "array": [
+          1,
+          2,
+          3,
+        ],
+        "nested": {
+          "a": [
+            1,
+            2,
+          ],
+        },
+      },
+    },
+  ],
+  [
+    "set",
+    {
+      "path": [
+        "array",
+        "3",
+      ],
+      "value": {
+        "array": [
+          1,
+          2,
+          3,
+        ],
+        "nested": {
+          "a": [
+            1,
+            2,
+          ],
+        },
+      },
+    },
+  ],
+  [
+    "set",
+    {
+      "path": [
+        "array",
+        "length",
+      ],
+      "value": {
+        "array": [
+          1,
+          2,
+          3,
+        ],
+        "nested": {
+          "a": [
+            1,
+            2,
+          ],
+        },
+      },
+    },
+  ],
+  [
+    "save",
+    {
+      "path": null,
+      "value": {
+        "array": [
+          1,
+          2,
+          3,
+        ],
+        "nested": {
+          "a": [
+            1,
+            2,
+          ],
+        },
+      },
+    },
+  ],
+  [
+    "delete",
+    {
+      "path": [
+        "array",
+      ],
+      "value": {
+        "array": [
+          1,
+          2,
+          3,
+        ],
+        "nested": {
+          "a": [
+            1,
+            2,
+          ],
+        },
+      },
+    },
+  ],
+  [
+    "set",
+    {
+      "path": [
+        "array",
+        "length",
+      ],
+      "value": {
+        "array": [
+          1,
+          2,
+          3,
+        ],
+        "nested": {
+          "a": [
+            1,
+            2,
+          ],
+        },
+      },
+    },
+  ],
+  [
+    "save",
+    {
+      "path": null,
+      "value": {
+        "array": [
+          1,
+          2,
+          3,
+        ],
+        "nested": {
+          "a": [
+            1,
+            2,
+          ],
+        },
+      },
+    },
+  ],
+  [
+    "set",
+    {
+      "path": "nested",
+      "value": {
+        "array": [
+          1,
+          2,
+          3,
+        ],
+        "nested": {
+          "a": [
+            1,
+            2,
+          ],
+        },
+      },
+    },
+  ],
+  [
+    "save",
+    {
+      "path": null,
+      "value": {
+        "array": [
+          1,
+          2,
+          3,
+        ],
+        "nested": {
+          "a": [
+            1,
+            2,
+          ],
+        },
+      },
+    },
+  ],
+  [
+    "set",
+    {
+      "path": [
+        "nested",
+        "a",
+        "1",
+      ],
+      "value": {
+        "array": [
+          1,
+          2,
+          3,
+        ],
+        "nested": {
+          "a": [
+            1,
+            2,
+          ],
+        },
+      },
+    },
+  ],
+  [
+    "set",
+    {
+      "path": [
+        "nested",
+        "a",
+        "length",
+      ],
+      "value": {
+        "array": [
+          1,
+          2,
+          3,
+        ],
+        "nested": {
+          "a": [
+            1,
+            2,
+          ],
+        },
+      },
+    },
+  ],
+  [
+    "save",
+    {
+      "path": null,
+      "value": {
+        "array": [
+          1,
+          2,
+          3,
+        ],
+        "nested": {
+          "a": [
+            1,
+            2,
+          ],
+        },
+      },
+    },
+  ],
+]
+`;

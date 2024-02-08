@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { RedisBackedObject } from './redisBackedObject'
 import Redis, { RedisOptions } from 'ioredis'
 
@@ -34,12 +34,16 @@ describe('RedisBackedObject', () => {
         a: 1
       }
     )
+    const mock = vi.fn()
+    state.emitter.on('*', mock)
     const proxy = state.proxy
     proxy.a = 2
 
     await sleep(2)
     const data = await redisClient.get('rbo:test')
     expect(data).toBe('{"a":2}')
+
+    expect(mock.mock.calls).toMatchSnapshot()
 
     proxy.a = 3
     await sleep(2)
@@ -52,6 +56,8 @@ describe('RedisBackedObject', () => {
     const data3 = await redisClient.get('rbo:test')
     expect(data3).toBe('{}')
 
+    expect(mock.mock.calls).toMatchSnapshot()
+
     // @ts-expect-error
     proxy.array = [1, 2, 3]
     await sleep(2)
@@ -63,6 +69,8 @@ describe('RedisBackedObject', () => {
     await sleep(2)
     const data5 = await redisClient.get('rbo:test')
     expect(data5).toBe('{"array":[1,2,3,4]}')
+
+    expect(mock.mock.calls).toMatchSnapshot()
 
     // @ts-expect-error
     proxy.array.pop()
@@ -81,6 +89,10 @@ describe('RedisBackedObject', () => {
     await sleep(2)
     const data7 = await redisClient.get('rbo:test')
     expect(data7).toBe('{"array":[1,2,3],"nested":{"a":[1,2]}}')
+
+    expect(mock).toHaveBeenCalledTimes(19)
+
+    expect(mock.mock.calls).toMatchSnapshot()
   })
 
   it('should load from Redis', async () => {
